@@ -74,7 +74,7 @@ def upload_file():
     if not url_list:
         return jsonify({'error': 'No URL or file provided.'}), 400
 
-    with ThreadPoolExecutor() as executor:
+    with ThreadPoolExecutor(max_workers=70) as executor:
         results = list(executor.map(get_url_status, url_list))
 
     summary = {}
